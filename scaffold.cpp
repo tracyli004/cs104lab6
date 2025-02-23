@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include "randfuncs.h"
 #include "mathfuncs.h"
 
 using namespace std;
@@ -41,16 +43,38 @@ void processCommand(const string &command) {
 }
 
 int main() {
+
+int main(int argc, char *argv[]) {
     const string EXIT = "quit";
     string command;
 
+
     do {
+        cout << "calc: ";
         cout << "calc: ";
         cin >> command;
         if (command != EXIT) {
             processCommand(command);
+
+        if ("help" == command) {
+            cout << "Commands:\n";
+            cout << "  help   - Show this help message";
+            cout << "  coin   - Flip a coin (Heads or Tails)";
+            cout << "  d6     - Roll a six-sided die";
+            cout << "  d20    - Roll a twenty-sided die";
+            cout << "  quit   - Exit the calculator";
+        } else if ("coin" == command) {
+            cout << "result: " << flipCoin() << endl;
+        } else if ("d6" == command) {
+            cout << "result: " << rollSixSidedDie() << endl;
+        } else if ("d20" == command) {
+            cout << "result: " << rollTwentySidedDie() << endl;
+        } else if (EXIT != command) {
+            cout << "unknown command, try typing 'help'";
         }
     } while (command != EXIT);
+
+    } while (EXIT != command);
 
     return 0;
 }
