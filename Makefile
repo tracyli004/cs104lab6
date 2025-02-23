@@ -10,4 +10,11 @@ TARGET = calc
 # default i will build the executable
 all: $(TARGET)
 
+# then link object files to create the final exec
+$(TARGET): $(OBJS)
+    $(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+%.o: %.cpp
+    $(CXX) $(CXXFLAGS) -c $< -o $@
+clean:
+    rm -f $(OBJS) $(TARGET)
 
